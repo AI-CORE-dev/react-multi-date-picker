@@ -140,7 +140,6 @@ export default function MonthPicker({
       names.push("rmdp-disabled");
 
     if (names.includes("rmdp-disabled") && onlyShowInRangeDates) return;
-    if (isSameDate(today, dateObject, true)) names.push("rmdp-today");
 
     if (!onlyMonthPicker) {
       if (date.monthIndex === monthIndex) names.push("rmdp-selected");

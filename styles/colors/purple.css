@@ -1,9 +1,9 @@
 :root {
-  --rmdp-primary-purple: #9c27b0;
-  --rmdp-secondary-purple: #7b1fa2;
+  --rmdp-primary-purple: #61257d;
+  --rmdp-secondary-purple: #7E2D87;
   --rmdp-shadow-purple: #8e24aa;
-  --rmdp-today-purple: #e040fb;
-  --rmdp-hover-purple: #d500f9;
+  --rmdp-today-purple: #904598;
+  --rmdp-hover-purple: #61257d;
   --rmdp-deselect-purple: #ba68c8;
 }
 
@@ -28,6 +28,7 @@
 .purple .rmdp-range {
   background-color: var(--rmdp-primary-purple);
   box-shadow: 0 0 3px var(--rmdp-shadow-purple);
+  color: white;
 }
 
 .purple .rmdp-arrow {
