@@ -10,22 +10,23 @@ export default function MonthPicker({
   state,
   onChange,
   customMonths,
+  mapMonths = a => a,
   sort,
   handleMonthChange,
   handleFocusedDate,
 }) {
   const {
-      date,
-      today,
-      minDate,
-      maxDate,
-      calendar,
-      locale,
-      onlyMonthPicker,
-      onlyYearPicker,
-      range,
-      onlyShowInRangeDates,
-    } = state,
+    date,
+    today,
+    minDate,
+    maxDate,
+    calendar,
+    locale,
+    onlyMonthPicker,
+    onlyYearPicker,
+    range,
+    onlyShowInRangeDates,
+  } = state,
     mustShowMonthPicker =
       (state.mustShowMonthPicker || onlyMonthPicker) && !onlyYearPicker;
 
@@ -78,11 +79,11 @@ export default function MonthPicker({
     >
       {months.map((array, i) => (
         <div key={i} className="rmdp-ym">
-          {array.map(({ date, name }, j) => (
+          {array.map(mapMonths).map(({ date, name, disabled }, j) => (
             <div
               key={j}
-              className={getClassName(date)}
-              onClick={() => selectMonth(date)}
+              className={getClassName(date, disabled)}
+              onClick={() => selectMonth(date, disabled)}
             >
               <span className={onlyMonthPicker ? "sd" : ""}>{name}</span>
             </div>
@@ -92,13 +93,14 @@ export default function MonthPicker({
     </div>
   );
 
-  function selectMonth(dateObject) {
+  function selectMonth(dateObject, disabled) {
     let { selectedDate, focused } = state,
       { year, monthIndex } = dateObject;
 
     if (
       (minDate && year <= minDate.year && monthIndex < minDate.monthIndex) ||
-      (maxDate && year >= maxDate.year && monthIndex > maxDate.monthIndex)
+      (maxDate && year >= maxDate.year && monthIndex > maxDate.monthIndex) ||
+      disabled
     )
       return;
 
@@ -121,7 +123,7 @@ export default function MonthPicker({
     if (onlyMonthPicker) handleFocusedDate(focused, dateObject);
   }
 
-  function getClassName(dateObject) {
+  function getClassName(dateObject, disabled) {
     let names = ["rmdp-day"],
       { year, monthIndex } = dateObject,
       { selectedDate } = state;
@@ -132,7 +134,8 @@ export default function MonthPicker({
           (year === minDate.year && monthIndex < minDate.monthIndex))) ||
       (maxDate &&
         (year > maxDate.year ||
-          (year === maxDate.year && monthIndex > maxDate.monthIndex)))
+          (year === maxDate.year && monthIndex > maxDate.monthIndex))) ||
+      disabled
     )
       names.push("rmdp-disabled");
 

@@ -38,6 +38,7 @@ function Calendar(
     minDate,
     maxDate,
     mapDays,
+    mapMonths,
     disableMonthPicker,
     disableYearPicker,
     formattingIgnoreList,
@@ -337,6 +338,7 @@ function Calendar(
                     <MonthPicker
                       {...globalProps}
                       customMonths={months}
+                      mapMonths={mapMonths}
                       handleMonthChange={handleMonthChange}
                     />
                   )}
