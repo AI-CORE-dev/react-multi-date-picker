@@ -6,7 +6,8 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "rollup -c",
-    "test": "jest ./test"
+    "test": "jest ./test",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
